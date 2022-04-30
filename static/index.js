@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    let base_url = 'http://127.0.0.1:5000';
+    let base_url = 'https://Shopify-Developer-Challenge.harlliey.repl.co';
     $('#showDeletion').click(function () {
         let c = $('#showDeletion').prop('checked');
         if (c) {
