@@ -1,8 +1,9 @@
 $(document).ready(function () {
+    let base_url = 'http://127.0.0.1:5000';
     $('#showDeletion').click(function () {
         let c = $('#showDeletion').prop('checked');
         if (c) {
-            $.get('http://127.0.0.1:5000/query_deleted_inventories', function (data, status) {
+            $.get(base_url + '/query_deleted_inventories', function (data, status) {
                 if (status === 'success' && data['status'] === 200) {
                     let inv_list = data['data'];
                     let it_selector = $('#InventoryTable tbody');
@@ -23,9 +24,9 @@ $(document).ready(function () {
 
                     $('table tbody .btn-recover').click(function () {
                         let id = $(this).closest('tr').find('td:eq(0)').text();
-                        $.get('http://127.0.0.1:5000/recover_deletion/' + id, function (data, status) {
+                        $.get(base_url + '/recover_deletion/' + id, function (data, status) {
                             if (status === 'success' && data['status'] === 200) {
-                                $.get('http://127.0.0.1:5000/query_deleted_inventories', function (data, status) {
+                                $.get(base_url + '/query_deleted_inventories', function (data, status) {
                                     if (status === 'success' && data['status'] === 200) {
                                         let inv_list = data['data'];
                                         let it_selector = $('#InventoryTable tbody');
@@ -60,7 +61,7 @@ $(document).ready(function () {
         }
     });
 
-    $.get('http://127.0.0.1:5000/query_inventories', function (data, status) {
+    $.get(base_url + '/query_inventories', function (data, status) {
         if (status === 'success' && data['status'] === 200) {
             let inv_list = data['data'];
             let it_selector = $('#InventoryTable tbody');
@@ -75,7 +76,7 @@ $(document).ready(function () {
                 let id = $(this).closest('tr').find('td:eq(0)').text();
                 $("#btn-modal-confirm").click(function () {
                     let comments = $("#Comments").val();
-                    $.post('http://127.0.0.1:5000/delete_inventory',
+                    $.post(base_url + '/delete_inventory',
                         {
                             id: id,
                             comments: comments
@@ -135,7 +136,7 @@ $(document).ready(function () {
                                 $('#up-hint').prepend("Missing required fields!");
                                 $('#up-hint').fadeIn();
                             } else {
-                                $.post('http://127.0.0.1:5000/update_inventory',
+                                $.post(base_url + '/update_inventory',
                                     {
                                         id: postList[0],
                                         name: postList[1],
@@ -211,7 +212,7 @@ $(document).ready(function () {
             $("#gds-cr-one").val(region);
         } else {
             $('#hint').fadeOut();
-            $.post('http://127.0.0.1:5000/create_inventory',
+            $.post(base_url + '/create_inventory',
                 {
                     name: name,
                     count: count,
