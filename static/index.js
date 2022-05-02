@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    let base_url = 'https://shopify-developer-challenge.harlliey.repl.co';
+    // let base_url = 'https://shopify-developer-challenge.harlliey.repl.co';
+    let base_url = 'http://127.0.0.1:5000';
+
     $('#showDeletion').click(function () {
         let c = $('#showDeletion').prop('checked');
         if (c) {
@@ -29,7 +31,7 @@ $(document).ready(function () {
                                 sessionStorage.setItem("deleteChecked", "true");
                                 window.location.reload();
                             } else {
-                                $('#hint').prepend(data['data']);
+                                $('#hint').text(data['data']);
                                 $('#hint').fadeIn();
                             }
                         });
@@ -73,7 +75,7 @@ $(document).ready(function () {
                             sessionStorage.setItem("deleteChecked", "true");
                             window.location.reload();
                         } else {
-                            $('#hint').prepend(data['data']);
+                            $('#hint').text(data['data']);
                             $('#hint').fadeIn();
                         }
                     });
@@ -110,7 +112,7 @@ $(document).ready(function () {
                                     window.location.reload();
 
                                 } else {
-                                    $('#hint').prepend(data['data']);
+                                    $('#hint').text(data['data']);
                                     $('#hint').fadeIn();
                                 }
                             });
@@ -155,7 +157,7 @@ $(document).ready(function () {
                                 });
 
                                 if (postList[1] === '' || postList[2] === '' || postList[3] === '' || postList[4] === null) {
-                                    $('#up-hint').prepend("Missing required fields!");
+                                    $('#up-hint').text("Missing required fields!");
                                     $('#up-hint').fadeIn();
                                 } else {
                                     $.post(base_url + '/update_inventory',
@@ -174,7 +176,7 @@ $(document).ready(function () {
                                                 window.location.reload();
 
                                             } else {
-                                                $('#hint').prepend(data['data']);
+                                                $('#hint').text(data['data']);
                                                 $('#hint').fadeIn();
                                             }
                                         });
@@ -223,7 +225,7 @@ $(document).ready(function () {
         let region = $("#gds-cr-one").val();
 
         if (name === '' || count === '' || id === '' || staff === null || country === '' || region === '') {
-            $('#hint').prepend("All the fields with * are required fields!");
+            $('#hint').text("All the fields with * are required fields!");
             $('#hint').fadeIn();
             // $('#hint').fadeOut(5000);
             $("#InventoryName").val(name);
@@ -246,14 +248,13 @@ $(document).ready(function () {
                     region: region
                 },
                 function (data, status) {
-                    // alert("Data: " + data['data'] + "\nStatus: " + data['status']);
                     if (data['status'] === 200) {
 
                         sessionStorage.setItem("createSuc", "true");
                         window.location.reload();
 
                     } else {
-                        $('#hint').prepend(data['data']);
+                        $('#hint').text(data['data']);
                         $('#hint').fadeIn();
                     }
                 });
