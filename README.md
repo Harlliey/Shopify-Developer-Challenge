@@ -18,3 +18,7 @@ I have implemented:
 2. Undo deletion
 3. Allow deletion comments
 4. Part of location service(there are some bugs when updating location information)
+
+The project is running on 
+
+https://Shopify-Developer-Challenge.harlliey.repl.co
